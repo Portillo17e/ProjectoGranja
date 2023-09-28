@@ -54,9 +54,10 @@ cultivos_cosechados = [[],[],[],[],[]]
 campos = 6
 #fertilizantes disponibles
 fertilizante_disponibles = 2
+#insectisidas
+insecticidas = 1
 #semillas disponibles 
-semillas = 4
-
+semillas = 8
 
 #funcion que nos ayuda a cosechar recibe el arreglo de todos los cultivos sembrados y el nombre del cultivo que se desea cosechar
 def cosechar(cultivos_d,nombre):
@@ -76,7 +77,7 @@ def cosechar(cultivos_d,nombre):
   return cultivos_d
 
 #funcion que ejecuta las opciones que tiene el usuario en el modo sembrar.Recibe dos parametros fertilizantes y semillas 
-def granjaCosechar(fertilizantes, semillas,cultivos):
+def granjaCosechar(fertilizantes, semillas,cultivos,insecticidas):
   while True:
     action = input('Que deseas hacer en la granja?\n1.Sembrar\n2.Regar\n3.Fertilizar el suelo\n4.Cosechar\n5.Ver mis cultivos\n6.Ver mis cosechas\n7.Salir\n')
     match(action):
@@ -90,12 +91,18 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
               b = b + 1
               print(f'{b}.{a}')
 
+            #cantidad de cultivos que hay sembrados
+            contador = 0
+            for fila in cultivos_sembrados:
+                for valor in fila:
+                    contador += 1
+
             cultivoSelect = input('Seleccione que cultivo desea sembrar: \n')
             #verifica si se ingresaron bien los datos
             if int(cultivoSelect) > len(cultivos_disponibles):
               print('Selecciono un cultivo fuera del rango de la lista!')
             elif int(cultivoSelect) <= len(cultivos_disponibles) and  int(cultivoSelect) > 0 :
-              if len(cultivos_disponibles) <= campos:
+              if contador <= campos:
                 newCultivo = cultivos_disponibles[int(cultivoSelect)-1]
                 newSembrado = Cultivo(newCultivo)
                 match(cultivoSelect):
@@ -115,7 +122,7 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
                 if salir =='2':
                   break
               else:
-                print('Ya no tiene espacios dentro del campo para sembra!\nTiene que mejorar el campo!')
+                print('Ya no tiene espacios dentro del campo para sembrar!\nTienes que mejorar el campo en la tienda!')
                 break
             elif int(cultivoSelect) == 0:
               break
@@ -125,18 +132,21 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
             print('Ya no cuenta con semillas disponibles para seguir sembrando!')
             break
       case '2':
-        numero_aleatorio = 3#random.randint(1, 8)
+        numero_aleatorio = random.randint(1, 8)
         while True:
           cultivosSembrados = len(cultivos_sembrados[0]) + len(cultivos_sembrados[1])+len(cultivos_sembrados[2]) + len(cultivos_sembrados[3])+len(cultivos_sembrados[4])
           if cultivosSembrados == 0:
             print('No hay cultivos sembrados aun!')
             break
           else:
-            if numero_aleatorio == 3:
+            if numero_aleatorio == 3 and insecticidas > 0:
+              insecticidas = insecticidas - 1
+              print(f'Una plaga ha afectado a tus cultivos!\nUsaste un insecticida para prevenir la plaga en tus cultivos\nTe restan {insecticidas}')
+            elif numero_aleatorio == 3 and insecticidas == 0:
               for siembra in cultivos_sembrados:
                 for fruta in siembra:
                   fruta.plaga()
-              print('Oh no!\nTus cultivos tienen plaga\nEL nivel de tus plantas fue reducido!!')
+              print('Oh no!\nTus cultivos tienen plaga\nEL nivel de tus plantas fue consumido!')
             else:
               for siembra in cultivos_sembrados:
                 for fruta in siembra:
@@ -259,10 +269,11 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
         print('Selecciono una opcion fuera del rango de la lista!')
 
   #de volvemos las mismas variables pero con un valor actualizado o el mismo con el que ingresaron si no fueron usadas
-  return fertilizantes,semillas,cultivos
+  return fertilizantes,semillas,cultivos,insecticidas
 
 #asignamos a las variables globales el valor que retorna la funcion que es el estado actual si fueron usadas
-fertilizante_disponibles,semillas, cultivos_sembrados = granjaCosechar(fertilizante_disponibles,semillas, cultivos_sembrados)
+fertilizante_disponibles,semillas, cultivos_sembrados,insecticidas = granjaCosechar(fertilizante_disponibles,semillas, cultivos_sembrados, insecticidas)
 
 #ejecutamos la funcion
 fertilizante_disponibles,semillas,cultivos_sembrados
+
