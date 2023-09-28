@@ -1,162 +1,93 @@
-# Inicialización de la variable dinero
 dinero = 500
-
-class Granja:
-    def __init__(self):
-        # Inicialización de las variables de la granja
-        self.gallinas = 1
-        self.ovejas = 1
-        self.vacas = 1
-        self.comida_gallina = 1
-        self.comida_vaca = 1
-        self.comida_ovejas = 1
-        self.huevos = 1
-        self.lana = 1
-        self.leche_litro = 1
-        # Almacena la variable global dinero en una variable de instancia
-        self.dinero = dinero
-
-    # Función para mostrar la cantidad de dinero
-    def mostrar_dinero(self):
-        print("Dinero:", self.dinero)
-
-    # Función para vender suministros
-    def vender_suministros(self):
+cultivos_cosechados = [[],[],[],[],[]]
+print("BIENVENIDO A LA TIENDA\n1-.Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
+store_buy = int(input("Ingrese la opción que desea de la tienda: "))
+while True:
+    if store_buy == 1:
+        print("1-. Vender producto de los cultivos\n 2-. Vender producto de la granja\n0-. Salir")
+        options = int(input("Ingrese la opción del lado que desea vender: "))
         while True:
-            self.mostrar_dinero()
-            print("¿Qué producto desea vender?\n1-. Huevos\n2-. Leche\n3-. Lana\n\n0-. Salir")
-            opcion = int(input("Ingrese el número correspondiente al producto que desea vender: "))
+            if options == 1:
+                print("1-. Fresa\n2-. Pepino\n3-. Naranja\n4-. Tomate\n5-. Zanahoria\n0-. Salir")
+                storess = int(input("Ingrese la opcón del producto que desea vender:"))
+                while True:
+                    if storess == 1:
+                        cant_a = int(input("Ingrese la cantidad de fresas que desea vender: "))
+                        cantida_a = len(cultivos_cosechados[0])
+                        if cant_a > 0 and cant_a <= cantida_a:
+                            ganancias = cant_a * 6
+                            dinero += ganancias
+                            for i in range(cant_a):
+                                cultivos_cosechados[0].pop(0)
+                        else:
+                            print("Cantidad de fresas no disponible")
 
-            if opcion == 1:
-                cantidad = int(input("Ingrese la cantidad que desea de Huevos: "))
-                if cantidad > 0 and cantidad <= self.huevos:
-                    ganancia = cantidad * 4
-                    self.dinero += ganancia
-                    self.huevos -= cantidad
-                    print("Felicidades, venta exitosa\nDinero:", self.dinero)
-                else:
-                    print("Suministros incompletos o cantidad no válida")
+                    elif storess == 2:
+                        cant_p = int(input("Ingrese la cantidad de pepinos que desea vender: "))
+                        cantida_p = len(cultivos_cosechados[1])
+                        if cant_p > 0 and cant_p <= cantida_p:
+                            ganancias = cant_p * 8
+                            dinero += ganancias
+                            for i in range(cant_p):
+                                cultivos_cosechados[1].pop(0)
+                        else:
+                            print("Cantidad de pepinos no disponible")
 
-            elif opcion == 2:
-                cantidad = int(input("Ingrese la cantidad de litros que desea de leche: "))
-                if cantidad > 0 and cantidad <= self.leche_litro:
-                    ganancia = cantidad * 14
-                    self.dinero += ganancia
-                    self.leche_litro -= cantidad
-                    print("Felicidades, venta exitosa\nDinero:", self.dinero)
-                else:
-                    print("Suministros incompletos o cantidad no válida")
+                    elif storess == 3:
+                        cant_n = int(input("Ingrese la cantidad de Naranjas que desea vender: "))
+                        cantida_n = len(cultivos_cosechados[2])
+                        if cant_n > 0 and cant_n <= cantida_n:
+                            ganancias = cant_n * 8
+                            dinero += ganancias
+                            for i in range(cant_n):
+                                cultivos_cosechados[2].pop(0)
+                        else:
+                            print("Cantidad de Naranjas no disponible")
 
-            elif opcion == 3:
-                cantidad = int(input("Ingrese la cantidad de rollos de lana que desea: "))
-                if cantidad > 0 and cantidad <= self.lana:
-                    ganancia = cantidad * 8
-                    self.dinero += ganancia
-                    self.lana -= cantidad
-                    print("Felicidades, venta exitosa\nDinero:", self.dinero)
-                else:
-                    print("Suministros incompletos o cantidad no válida")
+                    elif storess == 4:
+                        cant_t = int(input("Ingrese la cantidad de tomate que desea vender: "))
+                        cantida_t = len(cultivos_cosechados[3])
+                        if cant_t > 0 and cant_t <= cantida_t:
+                            ganancias = cant_t * 8
+                            dinero += ganancias
+                            for i in range(cant_t):
+                                cultivos_cosechados[3].pop(0)
+                        else:
+                            print("Cantidad de tomate no disponible")
 
-            elif opcion == 0:
-                print("Proceso realizado")
+                    elif storess == 5:
+                        cant_z = int(input("Ingrese la cantidad de zanahorias que desea vender: "))
+                        cantida_z = len(cultivos_cosechados[4])
+                        if cant_z > 0 and cant_p <= cantida_z:
+                            ganancias = cant_z * 8
+                            dinero += ganancias
+                            for i in range(cant_z):
+                                cultivos_cosechados[4].pop(0)
+                        else:
+                            print("Cantidad de zanahorias no disponible")
+
+                    elif storess == 0:
+                        print("Vuelva pronto")
+                        break
+
+                    else:
+                        print("Suministros incompletos o cantidad no válida")
+
+                    print("1-. Fresa\n2-. Pepino\n3-. Naranja\n4-. Tomate\n5-. Zanahoria\n0-. Salir")
+                    storess = int(input("Ingrese la opcón del producto que desea vender:"))
+
+            elif options == 2:
+                print("Parte alvisurez")
+
+            elif options == 0:
+                print("Vuelva pronto")
                 break
 
-            else:
-                print("Opción no válida, ingrese una opción válida.")
+            print("1-. Vender producto de los cultivos\n 2-. Vender producto de la granja\n0-. Salir")
+            options = int(input("Ingrese la opción del lado que desea vender: "))
 
-    # Función para comprar productos
-    def comprar_producto(self):
-        while True:
-            self.mostrar_dinero()
-            print("¿Qué producto desea comprar?\n1-. Comida para oveja\n2-. Comida para vaca\n3-. Comida para gallinas\n0-. Salir")
-            opcion = int(input("Ingrese el número correspondiente al producto que desea comprar: "))
-            if opcion == 1:
-                cantidad = int(input("Ingrese la cantidad de bolsas de comida para oveja que desea: "))
-                if cantidad > 0:
-                    costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.comida_ovejas += cantidad
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
-                    else:
-                        print("Moneda insuficiente, siga produciendo para hacer la compra")
-                else:
-                    print("La cantidad debe ser mayor que 0")
-            elif opcion == 2:
-                cantidad = int(input("Ingrese la cantidad de bolsas de comida para vaca que desea: "))
-                if cantidad > 0:
-                    costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.comida_vaca += cantidad
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
-                    else:
-                        print("Moneda insuficiente, siga produciendo para hacer la compra")
-                else:
-                    print("La cantidad debe ser mayor que 0")
-            elif opcion == 3:
-                cantidad = int(input("Ingrese la cantidad de bolsas de comida para gallinas que desea: "))
-                if cantidad > 0:
-                    costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.comida_gallina += cantidad
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
-                    else:
-                        print("Moneda insuficiente, siga produciendo para hacer la compra")
-                else:
-                    print("La cantidad debe ser mayor que 0")
-            elif opcion == 0:
-                print("Proceso realizado")
-                break
-            else:
-                print("Opción no válida, ingrese una opción válida.")
+    elif store_buy == 2:
 
-    # Función para mejorar la granja
-    def mejorar(self):
-        print("¿Desea mejorar algo de su granja?\n1-. Si\n2-. No\n")
-        opcion = int(input("Ingrese su elección: "))
-        if opcion == 1:
-            print("¿Qué desea mejorar?\n1-. Espacio de gallinas\n2-. Espacio de ovejas\n3-. Espacio de vacas\n0-. Salir")
-            while True:
-                eleccion = int(input("Ingrese el número correspondiente a lo que desea mejorar: "))
-                if eleccion == 1:
-                    cantidad = int(input("Ingrese la cantidad de espacios de gallinas que desea: "))
-                    costo = cantidad * 65
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.gallinas += cantidad
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nGallinas y espacios actuales:", self.gallinas)
-                    else:
-                        print("No cuenta con la moneda suficiente para hacer mejoras")
-                elif eleccion == 2:
-                    cantidad = int(input("Ingrese la cantidad de espacios de ovejas que desea: "))
-                    costo = cantidad * 85
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.ovejas += cantidad
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nOvejas y espacios actuales:", self.ovejas)
-                    else:
-                        print("No cuenta con la moneda suficiente para hacer mejoras")
-                elif eleccion == 3:
-                    cantidad = int(input("Ingrese la cantidad de espacios de vacas que desea: "))
-                    costo = cantidad * 100
-                    if costo <= self.dinero:
-                        self.dinero -= costo
-                        self.vacas += cantidad
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nVacas y espacios actuales:", self.vacas)
-                    else:
-                        print("No cuenta con la moneda suficiente para hacer mejoras")
-                elif eleccion == 0:
-                    print("Vuelva pronto")
-                    break
-                else:
-                    print("Opción no válida, ingrese una opción válida.")
-        elif opcion == 2:
-            print("Vuelva pronto")
-        else:
-            print("Opción no válida")
-
-# Ejemplo de uso
-granja = Granja()
-granja.mejorar()
+        
+    print("BIENVENIDO A LA TIENDA\n1-.Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
+    store_buy = int(input("Ingrese la opción que desea de la tienda: "))
