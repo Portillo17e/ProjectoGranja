@@ -1,3 +1,5 @@
+import random
+
 #Cultivo y cosechas
 cultivos_disponibles = ['Fresa','Pepino','Naranja','Tomate','Zanahorias']
 
@@ -26,6 +28,7 @@ class Cultivo:
       print('El cultivo ya llego al maximo de su crecimiento!\nYa puede ser cosechado')
       print(f'\nNombre del cultivo: {self.nombre} \n Etapa:Cosecha')
   
+  
   def cosecha(self):
     if self.etapa == 3:
       return self.nombre
@@ -35,6 +38,10 @@ class Cultivo:
   def cultivo_fertilizado(self):
     if self.etapa < 3:
       self.etapa += 1
+
+  def plaga(self):
+    if self.etapa > 0:
+      self.etapa = self.etapa - 1
 
   def mostrar(self):
     print(f'Nombre: {self.nombre} - Etapa: {self.etapa}')
@@ -65,13 +72,13 @@ def cosechar(cultivos_d,nombre):
         for b in reversed(a):
           if b.cosechados == True:
             cultivos_d[cultivos_d.index(a)].pop(cultivos_d[cultivos_d.index(a)].index(b))
-      print(f'{nombre}s fueron cosechadas correctamente!\n')
+  print(f'{nombre}s fueron cosechadas correctamente!\n')
   return cultivos_d
 
 #funcion que ejecuta las opciones que tiene el usuario en el modo sembrar.Recibe dos parametros fertilizantes y semillas 
 def granjaCosechar(fertilizantes, semillas,cultivos):
   while True:
-    action = input('Que deseas hacer en la granja?\n1.Sembrar\n2.Regar\n3.Fertilizar el suelo\n4.Cosechar\n5.Ver mis cultivos\n6.Salir\n')
+    action = input('Que deseas hacer en la granja?\n1.Sembrar\n2.Regar\n3.Fertilizar el suelo\n4.Cosechar\n5.Ver mis cultivos\n6.Ver mis cosechas\n7.Salir\n')
     match(action):
       case '1':
         while True:
@@ -118,16 +125,23 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
             print('Ya no cuenta con semillas disponibles para seguir sembrando!')
             break
       case '2':
+        numero_aleatorio = 3#random.randint(1, 8)
         while True:
           cultivosSembrados = len(cultivos_sembrados[0]) + len(cultivos_sembrados[1])+len(cultivos_sembrados[2]) + len(cultivos_sembrados[3])+len(cultivos_sembrados[4])
           if cultivosSembrados == 0:
             print('No hay cultivos sembrados aun!')
             break
           else:
-            for siembra in cultivos_sembrados:
-              for fruta in siembra:
-                fruta.crecimiento()
-            print('Los cultivos fueron regados correctamente!')
+            if numero_aleatorio == 3:
+              for siembra in cultivos_sembrados:
+                for fruta in siembra:
+                  fruta.plaga()
+              print('Oh no!\nTus cultivos tienen plaga\nEL nivel de tus plantas fue reducido!!')
+            else:
+              for siembra in cultivos_sembrados:
+                for fruta in siembra:
+                  fruta.crecimiento()
+              print('Los cultivos fueron regados correctamente!')
             break
       case '3':
         if len(cultivos_sembrados) > 0:
@@ -232,6 +246,14 @@ def granjaCosechar(fertilizantes, semillas,cultivos):
             for cosecha in siembra:
               cosecha.mostrar()
       case '6':
+        cultivosCosechados = len(cultivos_cosechados[0]) + len(cultivos_cosechados[1])+len(cultivos_cosechados[2]) + len(cultivos_cosechados[3])+len(cultivos_cosechados[4])
+        if cultivosCosechados == 0:
+          print('No hay cultivos cosechados!')
+        else:
+          for tipo in cultivos_cosechados:
+            if len(tipo)>0:
+              print(f'Cosecha:{tipo[0].nombre} - cantidad:{len(tipo)}')
+      case '7':
         break
       case _:
         print('Selecciono una opcion fuera del rango de la lista!')
