@@ -65,7 +65,7 @@ class Granja:
             if opcion == 1:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para oveja que desea: "))
                 if cantidad > 0:
-                    costo = cantidad * 35
+                    costo = cantidad * 50
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_ovejas += cantidad
@@ -77,7 +77,7 @@ class Granja:
             elif opcion == 2:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para vaca que desea: "))
                 if cantidad > 0:
-                    costo = cantidad * 40
+                    costo = cantidad * 50
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_vaca += cantidad
@@ -89,7 +89,7 @@ class Granja:
             elif opcion == 3:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para gallinas que desea: "))
                 if cantidad > 0:
-                    costo = cantidad * 40
+                    costo = cantidad * 50
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_gallina += cantidad
@@ -131,7 +131,7 @@ class Granja:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
                 elif eleccion == 3:
                     cantidad = int(input("Ingrese la cantidad de espacios de vacas que desea: "))
-                    costo = cantidad * 65
+                    costo = cantidad * 100
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.vacas += cantidad
