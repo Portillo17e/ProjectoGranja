@@ -110,12 +110,9 @@ class Medicina():
 dinero = 500
 
 class Establo:
-    def __init__(self):
+    def __init__(self, dinero):
         # Inicialización de las variables de la granja
         self.animales = []
-        self.gallinas = []
-        self.ovejas = []
-        self.vacas = []
         self.comida_gallina = 1
         self.comida_vaca = 1
         self.comida_oveja = 1
@@ -535,7 +532,7 @@ class Establo:
 
 
 # Pruebas
-establo = Establo()
-establo.mejorar()
-establo.entrar()
-establo.vender_suministros()
+#establo = Establo()
+#establo.mejorar()
+#establo.entrar()
+#establo.vender_suministros()
