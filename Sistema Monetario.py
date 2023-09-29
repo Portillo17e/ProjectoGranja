@@ -2,144 +2,208 @@ dinero = 500
 fertilizante_disponibles = 2
 insecticidas = 1
 campos = 6
-cultivos_cosechados = [["o", "o", "o", "o", "o"], ["o", "o", "o", "o"], ["o", "o", "o"], ["o", "o"], ["o"]]
-
+cultivos_cosechados = [[],[],[],[],[]]
+print("BIENVENIDO A LA TIENDA\n1-. Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
+store_buy = int(input("Ingrese la opción que desea de la tienda: "))
 while True:
-    print("BIENVENIDO A LA TIENDA")
-    print("1-. Vender producto")
-    print("2-. Comprar producto")
-    print("3-. Mejorar")
-    print("0-. Salir")
-    store_buy = int(input("Ingrese la opción que desea de la tienda: "))
-
     if store_buy == 1:
-        print("1-. Vender producto de los cultivos")
-        print("2-. Vender producto de la granja")
-        print("0-. Salir")
+        print("Dinero:", dinero)
+        print("1-. Vender producto de los cultivos\n2-. Vender producto de la granja\n0-. Salir")
         options = int(input("Ingrese la opción del lado que desea vender: "))
-
-        if options == 1:
-            print("1-. Fresa")
-            print("2-. Pepino")
-            print("3-. Naranja")
-            print("4-. Tomate")
-            print("5-. Zanahoria")
-            print("0-. Salir")
-            storess = int(input("Ingrese la opción del producto que desea vender:"))
-
-            if storess == 1:
+        while True:
+            if options == 1:
                 print("Dinero:", dinero)
-                cant_a = int(input("Ingrese la cantidad de fresas que desea vender: "))
-                cantida_a = len(cultivos_cosechados[0])
-                if cant_a > 0 and cant_a <= cantida_a:
-                    ganancias = cant_a * 6
-                    dinero += ganancias
-                    print("Lo gastado fue:", ganancias)
-                    for i in range(cant_a):
-                        cultivos_cosechados[0].pop(0)
-                else:
-                    print("Cantidad de fresas no disponible")
+                print("1-. Fresa\n2-. Pepino\n3-. Naranja\n4-. Tomate\n5-. Zanahoria\n0-. Salir")
+                storess = int(input("Ingrese la opcón del producto que desea vender: "))
+                while True:
+                    if storess == 1:
+                        cant_a = int(input("Ingrese la cantidad de fresas que desea vender (6.00): "))
+                        cantida_a = len(cultivos_cosechados[0])
+                        if cant_a > 0 and cant_a <= cantida_a:
+                            ganancias = cant_a * 6
+                            dinero += ganancias
+                            print("La ganancia fue:", ganancias)
+                            for i in range(cant_a):
+                                cultivos_cosechados[0].pop(0)
+                        else:
+                            print("Cantidad de fresas no disponible")
 
-            # Implementa las otras opciones de venta de cultivos de manera similar...
+                    elif storess == 2:
+                        cant_p = int(input("Ingrese la cantidad de pepinos que desea vender (8.00): "))
+                        cantida_p = len(cultivos_cosechados[1])
+                        if cant_p > 0 and cant_p <= cantida_p:
+                            ganancias = cant_p * 8
+                            dinero += ganancias
+                            print("La ganancia fue:", ganancias)
+                            for i in range(cant_p):
+                                cultivos_cosechados[1].pop(0)
+                        else:
+                            print("Cantidad de pepinos no disponible")
 
-        elif options == 2:
-            print("Parte de la granja")
+                    elif storess == 3:
+                        cant_n = int(input("Ingrese la cantidad de Naranjas que desea vender (9.00): "))
+                        cantida_n = len(cultivos_cosechados[2])
+                        if cant_n > 0 and cant_n <= cantida_n:
+                            ganancias = cant_n * 9
+                            dinero += ganancias
+                            print("Lo gastado fue:", ganancias)
+                            for i in range(cant_n):
+                                cultivos_cosechados[2].pop(0)
+                        else:
+                            print("Cantidad de Naranjas no disponible")
 
-        elif options == 0:
-            print("Vuelva pronto")
+                    elif storess == 4:
+                        cant_t = int(input("Ingrese la cantidad de tomate que desea vender (5.00): "))
+                        cantida_t = len(cultivos_cosechados[3])
+                        if cant_t > 0 and cant_t <= cantida_t:
+                            ganancias = cant_t * 5
+                            dinero += ganancias
+                            print("La ganancia fue:", ganancias)
+                            for i in range(cant_t):
+                                cultivos_cosechados[3].pop(0)
+                        else:
+                            print("Cantidad de tomate no disponible")
 
-        else:
-            print("Opción no válida")
+                    elif storess == 5:
+                        cant_z = int(input("Ingrese la cantidad de zanahorias que desea vender (8.00): "))
+                        cantida_z = len(cultivos_cosechados[4])
+                        if cant_z > 0 and cant_z <= cantida_z:
+                            ganancias = cant_z * 8
+                            dinero += ganancias
+                            print("La ganancia fue:",ganancias)
+                            for i in range(cant_z):
+                                cultivos_cosechados[4].pop(0)
+                        else:
+                            print("Cantidad de zanahorias no disponible")
 
-    elif store_buy == 2:
-        print("1-. Comprar producto para los cultivos")
-        print("2-. Comprar producto para la granja")
-        print("0-. Salir")
-        options = int(input("Ingrese la opción del lado que desea comprar: "))
+                    elif storess == 0:
+                        print("Vuelva pronto")
+                        break
 
-        if options == 1:
-            print("1-. Fertilizante")
-            print("2-. Insecticida")
-            print("0-. Salir")
-            storess = int(input("Ingrese la opción del producto que desea comprar: "))
-
-            if storess == 1:
-                print("Dinero:", dinero)
-                cantidad = int(input("Ingrese la cantidad de fertilizantes que desea: "))
-                if cantidad > 0:
-                    costo = cantidad * 80
-                    if costo <= dinero:
-                        dinero -= costo
-                        fertilizante_disponibles += cantidad
-                        print("Lo gastado fue: ", costo)
-                        print("Felicidades, compra exitosa\nDinero:", dinero, "\ncantidad de fertilizantes que tiene:",
-                              fertilizante_disponibles)
                     else:
-                        print("Moneda insuficiente, siga produciendo para hacer la compra")
-                else:
-                    print("La cantidad debe ser mayor que 0")
+                        print("Suministros incompletos o cantidad no válida")
 
-            elif storess == 2:
-                print("Dinero:", dinero)
-                cantidad = int(input("Ingrese la cantidad de insecticidas que desea: "))
-                if cantidad > 0:
-                    costo = cantidad * 50
-                    if costo <= dinero:
-                        dinero -= costo
-                        insecticidas += cantidad
-                        print("Lo gastado fue: ", costo)
-                        print("Felicidades, compra exitosa\nDinero:", dinero, "\nCantidad de Insecticidas que hay: ",
-                              insecticidas)
-                    else:
-                        print("Moneda insuficiente, siga produciendo para hacer la compra")
-                else:
-                    print("La cantidad debe ser mayor que 0")
+                    print("Dinero:", dinero)
+                    print("1-. Fresa\n2-. Pepino\n3-. Naranja\n4-. Tomate\n5-. Zanahoria\n0-. Salir")
+                    storess = int(input("Ingrese la opcón del producto que desea vender: "))
 
-            elif storess == 0:
+            elif options == 2:
+                print("Parte alvisurez")
+
+            elif options == 0:
                 print("Vuelva pronto")
+                break
 
             else:
                 print("Opción no valida")
 
-        elif options == 2:
-            print("Parte de la granja")
+            print("Dinero:", dinero)
+            print("1-. Vender producto de los cultivos\n2-. Vender producto de la granja\n0-. Salir")
+            options = int(input("Ingrese la opción del lado que desea vender: "))
 
-        elif options == 0:
-            print("Vuelva pronto")
+    elif store_buy == 2:
+        print("Dinero:", dinero)
+        print("1-. Comprar producto para los cultivos\n2-. Comprar producto para la granja\n0-. Salir")
+        options = int(input("Ingrese la opción del lado que desea comprar: "))
+        while True:
+            if options == 1:
+                print("Dinero:", dinero)
+                print("1-. Fertilizante\n2-. Insecticida\n0-. Salir")
+                storess = int(input("Ingrese la opción del producto que desea comprar: "))
+                while True:
+                    if storess == 1:
+                        print("Dinero:", dinero)
+                        cantidad = int(input("Ingrese la cantidad de fetilizantes que desea (80.00): "))
+                        if cantidad > 0:
+                            costo = cantidad * 80
+                            if costo <= dinero:
+                                dinero -= costo
+                                fertilizante_disponibles += cantidad
+                                print("Lo gastado fue: ", costo)
+                                print("Felicidades, compra exitosa\nDinero:", dinero, "\ncantidad de fertilizantes que tiene:", fertilizante_disponibles)
+                            else:
+                                print("Moneda insuficiente, siga produciendo para hacer la compra")
+                        else:
+                            print("La cantidad debe ser mayor que 0")
 
-        else:
-            print("Opción no valida")
+                    elif storess == 2:
+                        print("Dinero:", dinero)
+                        cantidad = int(input("Ingrese la cantidad de insecticidas que desea (50.00): "))
+                        if cantidad > 0:
+                            costo = cantidad * 50
+                            if costo <= dinero:
+                                dinero -= costo
+                                insecticidas += cantidad
+                                print("Lo gastado fue: ", costo)
+                                print("Felicidades, compra exitosa\nDinero:", dinero, "\nCantidad de Insecticidas que hay: ", insecticidas)
+                            else:
+                                print("Moneda insuficiente, siga produciendo para hacer la compra")
+                        else:
+                            print("La cantidad debe ser mayor que 0")
 
-    elif store_buy == 3:
-        print("1-. Comprar mejora para los cultivos")
-        print("2-. Comprar mejora para la granja")
-        print("0-. Salir")
-        options = int(input("Ingrese la opción del lado que desea mejorar: "))
+                    elif storess == 0:
+                        print("Vuelva pronto")
+                        break
 
-        if options == 1:
-            cantidad = int(input("Ingrese la cantidad de la mejora que desea hacer de campos: "))
-            costo = cantidad * 85
-            if costo <= dinero:
-                dinero -= costo
-                campos += cantidad
-                print("Lo gastado fue: ", costo)
-                print("Felicidades, mejora exitosa\nDinero:", dinero, "\nCampos actuales", campos)
+                    else:
+                        print("Opción no valida")
+
+                    print("Dinero:", dinero)
+                    print("1-. Fertilizante\n2-. Insecticida\n0-. Salir")
+                    storess = int(input("Ingrese la opción del producto que desea comprar: "))
+
+            elif options == 2:
+                print("Para alvisures")
+
+            elif options == 0:
+                print("Vueva pronto")
+                break
 
             else:
-                print("Dinero insuficiente, regrese cuando el dinero haya aumentado")
+                print("Opción no valida")
 
-        elif options == 2:
-            print("Parte de la granja")
+            print("Dinero:", dinero)
+            print("1-. Comprar producto para los cultivos\n2-. Comprar producto para la granja\n0-. Salir")
+            options = int(input("Ingrese la opción del lado que desea comprar: "))
 
-        elif options == 0:
-            print("Vuelva pronto")
+    elif store_buy == 3:
+        print("Dinero:", dinero)
+        print("1-. Comprar mejora para los cultivos\n2-. Comprar mejora para la granja\n0-. Salir")
+        options = int(input("Ingrese la opción del lado que desea mejorar: "))
+        while True:
+            if options == 1:
+                cantidad = int(input("Ingrese la cantidad de la mejora que desea hacer de campos (85.00): "))
+                costo = cantidad * 85
+                if costo <= dinero:
+                    dinero -= costo
+                    campos += cantidad
+                    print("Lo gastado fue: ", costo)
+                    print("Felicidades, mejora exitosa\nDinero:", dinero, "\nCampos actuales", campos)
 
-        else:
-            print("Opción no valida")
+                else:
+                    print("Dinero insuficiente, regrese cuando el dinero haya aumentado")
+
+            elif options == 2:
+                print("Para alvisurez")
+
+            elif options == 0:
+                print("Vueva pronto")
+                break
+
+            else:
+                print("Opción no valida")
+
+            print("Dinero:", dinero)
+            print("1-. Comprar mejora para los cultivos\n2-. Comprar mejora para la granja\n0-. Salir")
+            options = int(input("Ingrese la opción del lado que desea mejorar: "))
 
     elif store_buy == 0:
-        print("Gracias por visitar la tienda. ¡Vuelva pronto!")
+        print("Vueva pronto")
         break
 
     else:
-        print("Opción no válida. Por favor, seleccione una opción válida.")
+        print("Opción no valida")
+
+    print("Dinero:", dinero)
+    print("BIENVENIDO A LA TIENDA\n1-.Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
+    store_buy = int(input("Ingrese la opción que desea de la tienda: "))
