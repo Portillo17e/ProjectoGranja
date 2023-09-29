@@ -9,7 +9,7 @@ import Sistema_Monetario as Mercado
 
 class FarmLifeSimulator:
     def __init__(self):
-        self.tiempo_en_juego_minutos = 0
+        self.tiempo_en_juego_minutos = 360
         self.duracion_del_dia_en_juego_minutos = 24 * 60  # Un día equivale a 24 horas * 60 minutos
 
         ## Variables del Huerto ##
@@ -50,6 +50,7 @@ class FarmLifeSimulator:
                 "1. Ver cultivos\n" +
                 "2. Entrar al establo\n" +
                 "3. Ir al mercado\n" +
+                "4. Inventario\n" +
                 "0. Salir"
                 )
                 opcion = input("Ingrese la opcion a realizar: ")
@@ -61,7 +62,25 @@ class FarmLifeSimulator:
                     case "2":
                         self.establo.entrar()
                     case "3":
-                        self.dinero = Mercado.entrar_tienda(self.huerto, self.establo, self.dinero)
+                        self.dinero = Mercado.entrar_tienda(self.huerto, 
+                        self.establo, self.dinero)
+                    case "4":
+                        # Ver dinero, semillas, productos cosechados, productos del establo, insecticidas, fertilizantes
+                        inventario = ""
+                        inventario += f"Dinero: {self.dinero}"
+                        inventario +="\nProductos cosechados: "
+                        
+                        for tipo in self.huerto.  cultivos_cosechados:
+                            if len(tipo)>0:
+                                inventario += f'\nCosecha:{tipo[0].nombre} - cantidad:{len(tipo)}'
+                        inventario += f"\n{self.establo.leche_litro} litros de leche"        
+                        inventario += f"\n{self.establo.huevos} huevos"        
+                        inventario += f"\n{self.establo.lana} rollos de lana"        
+                        inventario +=f"\nSemillas: {self.huerto.semillas}"
+                        inventario +=f"\nInsecticidas: {self.huerto.insecticidas}"
+                        inventario +=f"\nFertilizante: {self.huerto.fertilizante_disponibles}"
+                        print(inventario)
+                        input()
                     case "0":
                         return
                     case _:
