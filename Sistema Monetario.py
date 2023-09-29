@@ -88,6 +88,6 @@ while True:
 
     elif store_buy == 2:
 
-        
+
     print("BIENVENIDO A LA TIENDA\n1-.Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
     store_buy = int(input("Ingrese la opción que desea de la tienda: "))

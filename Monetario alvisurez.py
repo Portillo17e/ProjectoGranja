@@ -33,6 +33,7 @@ class Granja:
                     ganancia = cantidad * 4
                     self.dinero += ganancia
                     self.huevos -= cantidad
+                    print("Lo gastado fue: ", ganancia)
                     print("Felicidades, venta exitosa\nDinero:", self.dinero)
                 else:
                     print("Suministros incompletos o cantidad no válida")
@@ -43,6 +44,7 @@ class Granja:
                     ganancia = cantidad * 14
                     self.dinero += ganancia
                     self.leche_litro -= cantidad
+                    print("Lo gastado fue: ", ganancia)
                     print("Felicidades, venta exitosa\nDinero:", self.dinero)
                 else:
                     print("Suministros incompletos o cantidad no válida")
@@ -53,6 +55,7 @@ class Granja:
                     ganancia = cantidad * 8
                     self.dinero += ganancia
                     self.lana -= cantidad
+                    print("Lo gastado fue: ", ganancia)
                     print("Felicidades, venta exitosa\nDinero:", self.dinero)
                 else:
                     print("Suministros incompletos o cantidad no válida")
@@ -77,6 +80,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_ovejas += cantidad
+                        print("Lo gastado fue: ", costo)
                         print("Felicidades, compra exitosa\nDinero:", self.dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
@@ -89,6 +93,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_vaca += cantidad
+                        print("Lo gastado fue: ", costo)
                         print("Felicidades, compra exitosa\nDinero:", self.dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
@@ -101,6 +106,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.comida_gallina += cantidad
+                        print("Lo gastado fue: ", costo)
                         print("Felicidades, compra exitosa\nDinero:", self.dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
@@ -126,6 +132,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.gallinas += cantidad
+                        print("Lo gastado fue:", costo)
                         print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nGallinas y espacios actuales:", self.gallinas)
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
@@ -135,6 +142,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.ovejas += cantidad
+                        print("Lo gastado fue: ", costo)
                         print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nOvejas y espacios actuales:", self.ovejas)
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
@@ -144,6 +152,7 @@ class Granja:
                     if costo <= self.dinero:
                         self.dinero -= costo
                         self.vacas += cantidad
+                        print("Lo gastado fue: ", costo)
                         print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nVacas y espacios actuales:", self.vacas)
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
