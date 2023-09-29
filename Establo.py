@@ -14,7 +14,7 @@ class Animal:
         self.__nombre = nombre
         self.__especie = especie
         self.__felicidad = 25
-        self.__hambre = 50
+        self.__hambre = 100
         self.__salud = 100
         self.__estado = "Bien"
 
@@ -23,26 +23,42 @@ class Animal:
 
     def limpiar(self):
         self.__felicidad += 5
-        self.__salud += 5
+        if self.__felicidad > 25:
+            self.__felicidad = 25
+        self.__salud += 25
+        if self.__salud > 100:
+            self.__salud = 100
 
     def acariciar(self):
         self.__felicidad += 5
+        if self.__felicidad > 25:
+            self.__felicidad = 25
 
     def comer(self, cantidad):
-        self.__felicidad += 3
+        self.__felicidad += 5
+        if self.__felicidad > 25:
+            self.__felicidad = 25
         self.__hambre += cantidad
+        if self.__hambre > 100:
+            self.__hambre = 100
 
     def entristecer(self):
         self.__felicidad -= 5
+        if self.__felicidad < 0:
+            self.__felicidad = 0
 
     def tener_hambre(self):
-        self.__hambre -= 10
+        self.__hambre -= 25
+        if self.__hambre < 0:
+            self.__hambre = 0
 
     def enfermar(self):
-        self.__salud -= 15
+        self.__salud -= random.randint(0, 20)
+        if self.__salud > 0:
+            self.__salud = 0
 
     def sanar(self, medicina):
-        self.__salud += medicina
+        self.__salud = 100
 
     def recolectar(self):
         pass
@@ -81,6 +97,7 @@ class Oveja(Animal):
     def recolectar(self):
         return random.randint(2, 6)
     
+# Clases de prueba o para implementacion futura
 class Alimento():
     def __init__(self, valor) -> None:
         self.valor = valor
@@ -288,11 +305,11 @@ class Establo:
             animal.entristecer()
             animal.enfermar()
 
-    def alimentar(self, animal, alimento = 20):
+    def alimentar(self, animal, alimento = 10):
         animal.comer(alimento)
 
     def dar_medicina(self, animal, medicina = 15):
-        animal.sanar(medicina)
+        animal.sanar()
 
     def recolectar(self, animal:Animal):
         #If la salud del animal es buena recolectar
@@ -358,7 +375,7 @@ class Establo:
                     tipo =  type(animal)
                     if tipo == Vaca:
                         print(f"Comida disponible: {self.comida_vaca}")
-                        print("Recuerda cada alimento le quita 20 puntos de hambre")
+                        print("Recuerda cada alimento saciara 15 puntos de hambre")
                         cantidad = input("Cantidad a alimentar: ")
                         while not cantidad.isnumeric():
                             cantidad = input("Por favor ingrese valores enteros:")
@@ -370,26 +387,26 @@ class Establo:
                             print("No hay suficiente comidad")
                     elif tipo == Gallina:
                         print(f"Comida disponible: {self.comida_gallina}")
-                        print("Recuerda cada alimento le quita 5 puntos de hambre")
+                        print("Recuerda cada alimento saciara 5 puntos de hambre")
                         cantidad = input("Cantidad a alimentar: ")
                         while not cantidad.isnumeric():
                             cantidad = input("Por favor ingrese valores enteros:")
                         cantidad = int(cantidad)
                         if cantidad <= self.comida_gallina and cantidad>=0:
                             self.comida_gallina -= cantidad
-                            self.alimentar(animal,20*cantidad)
+                            self.alimentar(animal,5*cantidad)
                         else:
                             print("No hay suficiente comidad")
                     elif tipo ==  Oveja:
                         print(f"Comida disponible: {self.comida_oveja}")
-                        print("Recuerda cada alimento le quita 20 puntos de hambre")
+                        print("Recuerda cada alimento saciara 8 puntos de hambre")
                         cantidad = input("Cantidad a alimentar: ")
                         while not cantidad.isnumeric():
                             cantidad = input("Por favor ingrese valores enteros:")
                         cantidad = int(cantidad)
                         if cantidad <= self.comida_oveja and cantidad>=0:
                             self.comida_oveja -= cantidad
-                            self.alimentar(animal, 20*cantidad)
+                            self.alimentar(animal, 8*cantidad)
                         else:
                                 print("No hay suficiente comidad")
                     # for alimento in alimentos:
@@ -516,6 +533,8 @@ class Establo:
                     print("Opcion no reconocida, vuelva a intentarlo")
             input()
 
+
+# Pruebas
 establo = Establo()
 establo.mejorar()
 establo.entrar()
