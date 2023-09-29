@@ -35,7 +35,7 @@ class FarmLifeSimulator:
             # Mostrar la hora actual en pantalla
             print(f'{hora_actual:02d}:{minutos_actuales:02d}')
 
-            # Puedes agregar aquí la lógica para que los jugadores interactúen con el mundo del juego
+           
             if hora_actual>6 and hora_actual<20: 
 
                 contador_plaga = 0
