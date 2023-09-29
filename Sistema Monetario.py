@@ -2,6 +2,7 @@ dinero = 500
 fertilizante_disponibles = 2
 insecticidas = 1
 campos = 6
+semillas = 8
 cultivos_cosechados = [[],[],[],[],[]]
 print("BIENVENIDO A LA TIENDA\n1-. Vender prducto\n2-. Comprar producto\n3-. Mejorar\n0-. Salir")
 store_buy = int(input("Ingrese la opción que desea de la tienda: "))
@@ -108,7 +109,7 @@ while True:
         while True:
             if options == 1:
                 print("Dinero:", dinero)
-                print("1-. Fertilizante\n2-. Insecticida\n0-. Salir")
+                print("1-. Fertilizante\n2-. Insecticida\n3-. Semillas\n0-. Salir")
                 storess = int(input("Ingrese la opción del producto que desea comprar: "))
                 while True:
                     if storess == 1:
@@ -141,6 +142,21 @@ while True:
                         else:
                             print("La cantidad debe ser mayor que 0")
 
+                    elif storess == 3:
+                        print("Dinero:", dinero)
+                        cantidad = int(input("Ingrese la cantidad de semillas que desea que desea (3.00): "))
+                        if cantidad > 0:
+                            costo = cantidad * 3
+                            if costo <= dinero:
+                                dinero -= costo
+                                semillas += cantidad
+                                print("Lo gastado fue: ", costo)
+                                print("Felicidades, compra exitosa\nDinero:", dinero, "\nCantidad de semillas que hay: ", semillas)
+                            else:
+                                print("Moneda insuficiente, siga produciendo para hacer la compra")
+                        else:
+                            print("La cantidad debe ser mayor que 0")
+
                     elif storess == 0:
                         print("Vuelva pronto")
                         break
@@ -149,7 +165,7 @@ while True:
                         print("Opción no valida")
 
                     print("Dinero:", dinero)
-                    print("1-. Fertilizante\n2-. Insecticida\n0-. Salir")
+                    print("1-. Fertilizante\n2-. Insecticida\n3-. Semillas\n0-. Salir")
                     storess = int(input("Ingrese la opción del producto que desea comprar: "))
 
             elif options == 2:
