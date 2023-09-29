@@ -49,7 +49,7 @@ class Cultivo:
 #variable que almacena los cultivos que hay sembrados
 cultivos_sembrados = [[],[],[],[],[]]
 #variable que almacena los cultivos que hay cultivados
-cultivos_cosechados = [[],[],[],[],[]]
+cultivos_cosechados = [['obj'],['obj','obj'],[],['obj','obj'],[]]
 #variable que se encarga de ver el espacio de siembra
 campos = 6
 #fertilizantes disponibles
@@ -271,9 +271,21 @@ def granjaCosechar(fertilizantes, semillas,cultivos,insecticidas):
   #de volvemos las mismas variables pero con un valor actualizado o el mismo con el que ingresaron si no fueron usadas
   return fertilizantes,semillas,cultivos,insecticidas
 
-#asignamos a las variables globales el valor que retorna la funcion que es el estado actual si fueron usadas
-fertilizante_disponibles,semillas, cultivos_sembrados,insecticidas = granjaCosechar(fertilizante_disponibles,semillas, cultivos_sembrados, insecticidas)
+#Este sera el menu principal de todo el proyecto!
+while True:
+  funcion = input('1.Granja de cosechas y cultivos\n2.Granja de crienza de animales\n3.Tienda\n4.Salir')
+  match(funcion):
+    #funcionalidad de Fernando
+    case '1':
+      #asignamos a las variables globales el valor que retorna la funcion que es el estado actual si fueron usadas
+      fertilizante_disponibles,semillas, cultivos_sembrados,insecticidas = granjaCosechar(fertilizante_disponibles,semillas, cultivos_sembrados, insecticidas)
 
-#ejecutamos la funcion
-fertilizante_disponibles,semillas,cultivos_sembrados
-
+      #ejecutamos la funcion
+      fertilizante_disponibles,semillas,cultivos_sembrados
+    case '2':
+      print('Aqui ira el codigo o funcion de Alvizurez')
+    case '3':
+      print('Aqui ira el codigo o funcion de josh')
+    case '4':
+      print('Saliendo del juego...')
+      break
