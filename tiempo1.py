@@ -19,7 +19,7 @@ class FarmLifeSimulator:
 
         ## Variables del establo ##
         # region
-        self.establo = Establo(500)
+        self.establo = Establo()
         # endregion
 
         ## Variables del mercado ##
@@ -33,10 +33,18 @@ class FarmLifeSimulator:
             minutos_actuales = self.tiempo_en_juego_minutos % 60
 
             # Mostrar la hora actual en pantalla
-            print(f'Hora en el juego: {hora_actual:02d}:{minutos_actuales:02d}')
+            print(f'{hora_actual:02d}:{minutos_actuales:02d}')
 
             # Puedes agregar aquí la lógica para que los jugadores interactúen con el mundo del juego
-            if hora_actual>6 and hora_actual<20:   
+            if hora_actual>6 and hora_actual<20: 
+
+                contador_plaga = 0
+                contador_plaga += 1
+                if contador_plaga == 6:
+                    contador_plaga = 0
+                    self.huerto.enfermar()
+
+                print(self.dinero)
                 print(
                 # Opciones
                 "1. Ver cultivos\n" +
@@ -60,7 +68,7 @@ class FarmLifeSimulator:
                         print("Opcion no reconocida")
             else:
                 print("Descansando hasta las 7 am")
-
+            self.establo.actualizar()
             # Avanzar el tiempo en el juego
             self.tiempo_en_juego_minutos += minutos_avance
             time.sleep(1)  # Simula que un minuto del juego equivale a 1 segundo real

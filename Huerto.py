@@ -273,7 +273,9 @@ class Huerto:
     #de volvemos las mismas variables pero con un valor actualizado o el mismo con el que ingresaron si no fueron usadas
     return fertilizantes,semillas,cultivos,insecticidas
 
-  
+  def enfermar(self):
+    for cultivo in self.cultivos_sembrados:
+      cultivo.plaga()
 
   def ver(self):
     return self.granjaCosechar(self.fertilizante_disponibles, self.semillas, self.cultivos_sembrados, self.insecticidas)

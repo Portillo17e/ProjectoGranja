@@ -107,10 +107,10 @@ class Medicina():
 
 #animales:list[Animal] = []
 # Inicialización de la variable dinero
-dinero = 500
+#dinero = 500
 
 class Establo:
-    def __init__(self, dinero):
+    def __init__(self):
         # Inicialización de las variables de la granja
         self.animales = []
         self.comida_gallina = 1
@@ -119,17 +119,15 @@ class Establo:
         self.huevos = 1
         self.lana = 1
         self.leche_litro = 1
-        # Almacena la variable global dinero en una variable de instancia
-        self.dinero = dinero
 
     # Función para mostrar la cantidad de dinero
-    def mostrar_dinero(self):
-        print("Dinero:", self.dinero)
+    def mostrar_dinero(self, dinero):
+        print("Dinero:", dinero)
 
     # Función para vender suministros
-    def vender_suministros(self):
+    def vender_suministros(self, dinero):
         while True:
-            self.mostrar_dinero()
+            self.mostrar_dinero(dinero)
             print("¿Qué producto desea vender?\n1-. Huevos\n2-. Leche\n3-. Lana\n\n0-. Salir")
             opcion = int(input("Ingrese el número correspondiente al producto que desea vender: "))
 
@@ -138,7 +136,7 @@ class Establo:
                 cantidad = int(input("Ingrese la cantidad que desea vender de Huevos: "))
                 if cantidad > 0 and cantidad <= self.huevos:
                     ganancia = cantidad * 4
-                    self.dinero += ganancia
+                    dinero += ganancia
                     self.huevos -= cantidad
                     print("Ha obtenido: ", ganancia)
                     print("Felicidades, venta exitosa")
@@ -150,7 +148,7 @@ class Establo:
                 cantidad = int(input("Ingrese la cantidad de litros de leche que desea vender: "))
                 if cantidad > 0 and cantidad <= self.leche_litro:
                     ganancia = cantidad * 14
-                    self.dinero += ganancia
+                    dinero += ganancia
                     self.leche_litro -= cantidad
                     print("Ha obtenido: ", ganancia)
                     print("Felicidades, venta exitosa")
@@ -162,7 +160,7 @@ class Establo:
                 cantidad = int(input("Ingrese la cantidad de rollos de lana que desea vender: "))
                 if cantidad > 0 and cantidad <= self.lana:
                     ganancia = cantidad * 8
-                    self.dinero += ganancia
+                    dinero += ganancia
                     self.lana -= cantidad
                     print("Ha obtenido: ", ganancia)
                     print("Felicidades, venta exitosa")
@@ -171,26 +169,26 @@ class Establo:
 
             elif opcion == 0:
                 print("Proceso realizado")
-                break
+                return dinero
 
             else:
                 print("Opción no válida, ingrese una opción válida.")
 
     # Función para comprar productos
-    def comprar_producto(self):
+    def comprar_producto(self, dinero):
         while True:
-            self.mostrar_dinero()
+            self.mostrar_dinero(dinero)
             print("¿Qué producto desea comprar?\n1-. Comida para oveja\n2-. Comida para vaca\n3-. Comida para gallinas\n0-. Salir")
             opcion = int(input("Ingrese el número correspondiente al producto que desea comprar: "))
             if opcion == 1:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para oveja que desea: "))
                 if cantidad > 0:
                     costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
                         self.comida_ovejas += cantidad
                         print("Lo gastado fue: ", costo)
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
+                        print("Felicidades, compra exitosa\nDinero:", dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
                 else:
@@ -199,11 +197,11 @@ class Establo:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para vaca que desea: "))
                 if cantidad > 0:
                     costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
                         self.comida_vaca += cantidad
                         print("Lo gastado fue: ", costo)
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
+                        print("Felicidades, compra exitosa\nDinero:", dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
                 else:
@@ -212,23 +210,23 @@ class Establo:
                 cantidad = int(input("Ingrese la cantidad de bolsas de comida para gallinas que desea: "))
                 if cantidad > 0:
                     costo = cantidad * 50
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
                         self.comida_gallina += cantidad
                         print("Lo gastado fue: ", costo)
-                        print("Felicidades, compra exitosa\nDinero:", self.dinero)
+                        print("Felicidades, compra exitosa\nDinero:", dinero)
                     else:
                         print("Moneda insuficiente, siga produciendo para hacer la compra")
                 else:
                     print("La cantidad debe ser mayor que 0")
             elif opcion == 0:
                 print("Proceso realizado")
-                break
+                return dinero
             else:
                 print("Opción no válida, ingrese una opción válida.")
 
     # Función para mejorar la granja
-    def mejorar(self):
+    def mejorar(self, dinero):
         print("¿Desea mejorar algo de su granja?\n1-. Si\n2-. No\n")
         opcion = int(input("Ingrese su elección: "))
         if opcion == 1:
@@ -238,8 +236,8 @@ class Establo:
                 if eleccion == 1:
                     cantidad = int(input("Ingrese la cantidad de gallinas que desea: "))
                     costo = cantidad * 65
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
                         
                         gallinas = []
                         for x in range(cantidad):
@@ -248,14 +246,14 @@ class Establo:
                             self.animales.append(gallina)
 
                         print("Lo gastado fue:", costo)
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nCantidad dr Gallinas y espacios actuales:", len(self.ver_gallinas()))
+                        print("Felicidades, mejora exitosa\nDinero:", dinero, "\nCantidad dr Gallinas y espacios actuales:", len(self.ver_gallinas()))
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
                 elif eleccion == 2:
                     cantidad = int(input("Ingrese la cantidad ovejas que desea: "))
                     costo = cantidad * 85
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
 
                         ovejas = []
                         for x in range(cantidad):
@@ -264,14 +262,14 @@ class Establo:
                             self.animales.append(oveja)
                         
                         print("Lo gastado fue: ", costo)
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nCantidad de Ovejas y espacios actuales:", len(self.ver_ovejas()))
+                        print("Felicidades, mejora exitosa\nDinero:", dinero, "\nCantidad de Ovejas y espacios actuales:", len(self.ver_ovejas()))
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
                 elif eleccion == 3:
                     cantidad = int(input("Ingrese la cantidad de vacas que desea: "))
                     costo = cantidad * 100
-                    if costo <= self.dinero:
-                        self.dinero -= costo
+                    if costo <= dinero:
+                        dinero -= costo
 
                         vacas = []
                         for x in range(cantidad):
@@ -280,12 +278,12 @@ class Establo:
                             self.animales.append(vaca)
 
                         print("Lo gastado fue: ", costo)
-                        print("Felicidades, mejora exitosa\nDinero:", self.dinero, "\nVacas y espacios actuales:", len(self.ver_vacas()))
+                        print("Felicidades, mejora exitosa\nDinero:", dinero, "\nVacas y espacios actuales:", len(self.ver_vacas()))
                     else:
                         print("No cuenta con la moneda suficiente para hacer mejoras")
                 elif eleccion == 0:
                     print("Vuelva pronto")
-                    break
+                    return dinero
                 else:
                     print("Opción no válida, ingrese una opción válida.")
         elif opcion == 2:
@@ -510,11 +508,17 @@ class Establo:
             match opcion:
                 # Opciones
                 case "1":
-                    for animal in self.animales:
-                        print(animal)
+                    if len(self.animales) >0:
+                        for animal in self.animales:
+                            print(animal)
+                    else:
+                        print("Aun no hay animales en el establo, ve a la tienda para mejorar esto")
                 case "2":
-                    for animal in self.animales:
-                        print(animal.ver_estado())
+                    if len(self.animales) >0:
+                        for animal in self.animales:
+                            print(animal.ver_estado())
+                    else:
+                        print("Aun no hay animales en el establo, ve a la tienda para mejorar esto")
                 case "3":
                     if len(self.animales) > 0:
                         animal = self.seleccionar_animal()

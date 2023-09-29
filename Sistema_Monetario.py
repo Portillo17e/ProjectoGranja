@@ -96,7 +96,7 @@ def entrar_tienda(huerto : Huerto, establo, dinero):
                         storess = int(input("Ingrese la opcón del producto que desea vender: "))
 
                 elif options == 2:
-                    print("Parte alvisurez")
+                    dinero = establo.vender_suministros(dinero)
 
                 elif options == 0:
                     print("Vuelva pronto")
@@ -176,7 +176,7 @@ def entrar_tienda(huerto : Huerto, establo, dinero):
                         storess = int(input("Ingrese la opción del producto que desea comprar: "))
 
                 elif options == 2:
-                    establo.mejorar()
+                    dinero = establo.comprar_producto(dinero)
 
                 elif options == 0:
                     print("Vueva pronto")
@@ -207,7 +207,7 @@ def entrar_tienda(huerto : Huerto, establo, dinero):
                         print("Dinero insuficiente, regrese cuando el dinero haya aumentado")
 
                 elif options == 2:
-                    establo.vender_suministros()
+                    dinero = establo.mejorar(dinero)
 
                 elif options == 0:
                     print("Vueva pronto")
