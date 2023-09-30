@@ -72,6 +72,8 @@ class Animal:
     def __str__(self) -> str:
        return f"{self.__id}. {self.__especie.title()}\nNombre: {self.__nombre}"
 
+## Implementaciones de los diferentes animales ##
+#region
 class Vaca(Animal):
     def __init__(self, id, nombre) -> None:
         super().__init__(id, nombre, "vaca")
@@ -96,7 +98,9 @@ class Oveja(Animal):
 
     def recolectar(self):
         return random.randint(2, 6)
-    
+
+#endregion  
+
 # Clases de prueba o para implementacion futura
 class Alimento():
     def __init__(self, valor) -> None:
@@ -105,9 +109,12 @@ class Medicina():
     def __init__(self, valor) -> None:
         self.valor = valor
 
+# Variables usadas durante las pruebas
+#region
 #animales:list[Animal] = []
 # Inicialización de la variable dinero
 #dinero = 500
+#endregion
 
 class Establo:
     def __init__(self):
@@ -293,7 +300,7 @@ class Establo:
 
 
 # Funciones para facilitar la modificacion de atributos en los animales
-
+    # Funcion que hace pasar el tiempo para el animal, enfermando y entristeciendo
     def actualizar(self):
         for animal in self.animales:
             animal.tener_hambre()
@@ -303,19 +310,20 @@ class Establo:
     def alimentar(self, animal, alimento = 10):
         animal.comer(alimento)
 
+    # Funcion para curar al animal, pensada para implementar medicinas varias en el futuro
     def dar_medicina(self, animal, medicina = 15):
         animal.sanar()
 
     def recolectar(self, animal:Animal):
-        #If la salud del animal es buena recolectar
-        # sino una advertencia
-        if animal.ver_salud() > 8:
+        #Si la salud del animal es buena recolectar
+        # sino retorna vacio para implementar una advertencia
+        if animal.ver_salud() > 60:
             return animal.recolectar() 
         else:
             return
 
 # Funciones para mostrar a los animales
-
+# Retornan una lista formada de los animales cuyo tipo es el solicitado
     def ver_vacas(self):
         return [x for x in self.animales if type(x) == Vaca]
     def ver_gallinas(self):
@@ -323,7 +331,7 @@ class Establo:
     def ver_ovejas(self):
         return [x for x in self.animales if type(x) == Oveja]
 
-# Funcion para crear un animal, tipo variable entera para identificar el tipo de animal a crear
+# Funcion para crear un animal, tipo: variable entera para identificar el tipo de animal a crear
     def nuevo_animal(self, tipo):
         print(f"Creando: {TIPOS[tipo-1]}")
         id = len(self.animales)+1
@@ -347,7 +355,7 @@ class Establo:
     def crear_oveja(self):
         return self.nuevo_animal(3)
 
-    # Menus para interactuar
+## Menus para interactuar ##
     # Menu para cuidar de los animales
     def cuidar(self, animal:Animal):
         while True:
@@ -493,7 +501,7 @@ class Establo:
                 case _:
                     print("Opcion no reconocida")
 
-    # Menu para visualizar
+    # Menu para general
     # Este es el metodo a ejecutar para poder interactuar con los animales
     def entrar(self):
         while True:
@@ -525,7 +533,7 @@ class Establo:
                         self.cuidar(animal)
                         print(animal.ver_estado())
                     else:
-                        print("Aun no tiene animales para seleccionar")
+                        print("Aun no hay animales en el establo, ve a la tienda para mejorar esto")
                 # case "4":
                 #     # crear_animal()
                 case "0":
@@ -535,7 +543,7 @@ class Establo:
             input()
 
 
-# Pruebas
+## Pruebas ##
 #establo = Establo()
 #establo.mejorar()
 #establo.entrar()
