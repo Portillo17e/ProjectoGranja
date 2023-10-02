@@ -8,7 +8,7 @@ class Cultivo:
     self.nombre = nombre
     self.cosechados = False
     self.riegos = 0
-    self.etapa = 3
+    self.etapa = 0
 
   def crecimiento(self):
     if self.etapa < 3 and self.riegos==3:
@@ -59,7 +59,7 @@ class Huerto:
 #insectisidas
     self.insecticidas = 1
 #semillas disponibles 
-    self.semillas = 8
+    self.semillas = 6
 
 #funcion que nos ayuda a cosechar recibe el arreglo de todos los cultivos sembrados y el nombre del cultivo que se desea cosechar
   def cosechar(self,cultivos_d,nombre):
