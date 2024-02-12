@@ -57,7 +57,7 @@ class Animal:
         if self.__salud > 0:
             self.__salud = 0
 
-    def sanar(self, medicina):
+    def sanar(self, medicina = 10):
         self.__salud = 100
 
     def recolectar(self):
@@ -380,9 +380,22 @@ class Establo:
                         print(f"Comida disponible: {self.comida_vaca}")
                         print("Recuerda cada alimento saciara 15 puntos de hambre")
                         cantidad = input("Cantidad a alimentar: ")
-                        while not cantidad.isnumeric():
-                            cantidad = input("Por favor ingrese valores enteros:")
-                        cantidad = int(cantidad)
+                        # Codigo original
+                        #region
+                        # while not cantidad.isnumeric():
+                        #     cantidad = input("Por favor ingrese valores enteros:")
+                        #cantidad = int(cantidad)
+                        #endregion
+                        # Impelementacion Try
+                        #region
+                        while True:
+                            try:
+                                cantidad = int(cantidad)
+                            except:
+                                cantidad = input("Por favor ingrese valores enteros:")
+                            else:
+                                break
+                        #endregion
                         if cantidad <= self.comida_vaca and cantidad>=0:
                             self.comida_vaca -= cantidad
                             self.alimentar(animal, 20*cantidad)
@@ -544,7 +557,7 @@ class Establo:
 
 
 ## Pruebas ##
-#establo = Establo()
-#establo.mejorar()
-#establo.entrar()
-#establo.vender_suministros()
+# establo = Establo()
+# establo.mejorar()
+# establo.entrar()
+# establo.vender_suministros()
